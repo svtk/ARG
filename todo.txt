@@ -1,0 +1,56 @@
+Book
+    curpos
+    curpar
+    matching
+    txtFile
+    audioFiles
+
+
+AudioPosition
+    audioFile
+    position
+
+Chunk
+    parsedString
+    audioPosition
+    duration
+
+ParagraphPosition
+    paragraph
+    audioPosition
+
+FormattedText
+    idealString
+    map<paragraph -> textPosition>
+
+AudioPosition2ParagraphMap
+    - getParagraph(AudioPosition:fromAudio)
+    - getPosition(Paragraph:fromText)
+
+TextFromAudioBuilder
+    Audio2FlacEncoder
+        - getFlac(Audio[]) -> flac
+    Cutter
+        - cut(flac) -> flac[]
+    TextRecognizer
+        - getText(flac) -> chunk
+
+IdealTextBuilder
+    FB2IdealTextBuilder
+        - getText(fb2) -> formattedText
+
+
+ChunksMatcher
+    - placeChunks(chunks, idealString) -> PlacedChunk;
+
+Matcher
+    -match(placedChunks, formattedText) -> AudioPostion2ParagraphMap
+
+
+FBRPlugin
+    Loader
+        load(book, audio[])
+
+    Checker (if everything is ok and we still playing what we need)
+
+    Navigator
