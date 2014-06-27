@@ -1,42 +1,41 @@
-Book
++ Book
     curpos
     curpar
     matching
     txtFile
     audioFiles
 
-
-AudioPosition
++ AudioPosition
     audioFile
     position
 
-Chunk
++ Chunk
     parsedString
     audioPosition
     duration
 
-ParagraphPosition
++ ParagraphPosition
     paragraph
     audioPosition
 
-FormattedText
++ FormattedText
     idealString
     map<paragraph -> textPosition>
 
-AudioPosition2ParagraphMap
++ AudioPosition2ParagraphMap
     - getParagraph(AudioPosition:fromAudio)
     - getPosition(Paragraph:fromText)
 
 TextFromAudioBuilder
++    Cutter
+          - cut(mp3) -> mp3[]
     Audio2FlacEncoder
-        - getFlac(Audio[]) -> flac
-    Cutter
-        - cut(flac) -> flac[]
-    TextRecognizer
+        - getFlac(mp3[]) -> flac[]
++    TextRecognizer
         - getText(flac) -> chunk
 
 IdealTextBuilder
-    FB2IdealTextBuilder
++    FB2IdealTextBuilder
         - getText(fb2) -> formattedText
 
 

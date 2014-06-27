@@ -15,7 +15,9 @@ class TextRecognizer() {
         val result = StringBuilder()
         recognizerChunked.addResponseListener(object : GSpeechResponseListener {
             override fun onResponse(gr: GoogleResponse?) {
-                result.append(gr?.getResponse())
+                val s = gr?.getResponse()
+                result.append(s)
+               // println(s)
             }
         })
         recognizerChunked.getRecognizedDataForFlac(flacFile, sampleRate)

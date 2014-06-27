@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="android-ffmpeg-java-master">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/android-ffmpeg-java-master.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
