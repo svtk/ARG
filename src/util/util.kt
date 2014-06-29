@@ -2,6 +2,7 @@ package util
 
 import java.util.Properties
 import java.io.FileInputStream
+import java.util.Collections
 
 fun getKey(): String {
     val properties = Properties()
@@ -11,6 +12,13 @@ fun getKey(): String {
 
 fun IntRange.shift(shift: Int) = IntRange(start + shift, end + shift)
 
-fun IntRange.intersect(other: IntRange): IntRange =
-        (if (start > other.start) start else other.start)..(if (end < other.end) end else other.end)
+fun IntRange.intersect(other: IntRange): IntRange {
+    val maxStart = max(start, other.start)
+    val minEnd = min(end, other.end)
+    if (maxStart > minEnd) return IntRange.EMPTY
+    return maxStart..minEnd
+}
 
+fun <T: Comparable<T>> min(vararg elements: T) = Collections.min(elements.toList())
+
+fun <T: Comparable<T>> max(vararg elements: T) = Collections.max(elements.toList())

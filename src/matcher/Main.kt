@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
                     val paragraph = formattedText.paragraphs[paragraphPosition.paragraphIndex]
                     println(formattedText.getTextForParagraphRange(paragraph, paragraphPosition.rangeInParagraph))
                 }
-                T1hread.sleep(15000)
+                Thread.sleep(15000)
             }
         } catch(e: Exception) {
         }

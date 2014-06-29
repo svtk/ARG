@@ -19,13 +19,15 @@ data class FormattedText(
     fun getParagraphWords(paragraph: Paragraph) =
             wordsWithoutFormatting.subList(paragraph.wordsRange.start, paragraph.wordsRange.end)
 
-    fun getParagraphText(paragraph: Paragraph) = getTextForRange(paragraph.rangeInIdealText)
+    fun Paragraph.getText() = getTextForRange(rangeInIdealText)
 
     fun getTextForRange(range: IntRange) = idealString.substring(range)
+
+    fun getTextForWordRange(wordRange: IntRange) = getTextForRange(getTextRangeByWordsRange(wordRange))
 
     fun getTextForParagraphRange(paragraph: Paragraph, range: IntRange) =
             getTextForRange(range.shift(paragraph.rangeInIdealText.start))
 
-    fun getRangeInIdealTextByWordsRange(wordsRange: IntRange) =
-            wordsWithoutFormatting[wordsRange.start].range.start..wordsWithoutFormatting[wordsRange.end].range.end
+    fun getTextRangeByWordsRange(wordRange: IntRange) =
+            wordsWithoutFormatting[wordRange.start].range.start..wordsWithoutFormatting[wordRange.end].range.end
 }
